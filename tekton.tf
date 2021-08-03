@@ -15,7 +15,9 @@ resource "null_resource" "tekton-tasks" {
   provisioner "local-exec" {
     command = <<-EOT
       tkn hub install task git-clone
+      //terraform-cli
       kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/terraform-cli/0.2/terraform-cli.yaml
+      kubectl apply -f ./tekton/tasks/terraform-cli/terraform-secret.yaml
     EOT
   }
 }
@@ -26,7 +28,7 @@ resource "null_resource" "tekton-pipelines" {
   ]
   provisioner "local-exec" {
     command = <<-EOT
-      kubectl apply -f ./tekton
+      kubectl apply -f ./tekton/infra-pipeline.yaml
     EOT
   }
 }

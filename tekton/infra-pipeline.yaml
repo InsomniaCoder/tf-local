@@ -30,6 +30,8 @@ spec:
         - name: ARGS
           value:
             - init
+        - name: terraform-secret
+          value: "terraform-secret"
     - name: terraform-plan
       taskRef:
         name: terraform-cli
@@ -40,6 +42,8 @@ spec:
         - name: ARGS
           value:
             - plan
+        - name: terraform-secret
+          value: "terraform-secret"
     - name: terraform-apply
       taskRef:
         name: terraform-cli
@@ -51,3 +55,5 @@ spec:
           value:
             - apply
             - "-auto-approve"
+        - name: terraform-secret
+          value: "terraform-secret"
