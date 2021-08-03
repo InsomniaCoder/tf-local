@@ -42,7 +42,7 @@ terraform plan
 - apply to local cluster by 
 
 ```
-terraform apply
+terraform apply -auto-approve
 ```
 
 run the tekton terraform pipeline via
