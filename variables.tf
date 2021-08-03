@@ -1,6 +1,6 @@
-variable "tekton-ci-version" {
+variable "tekton-operator-version" {
   type    = string
-  default = "v0.26.0"
+  default = "latest"
 }
 
 variable "metrics-server-version" {

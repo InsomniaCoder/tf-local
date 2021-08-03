@@ -13,13 +13,11 @@ resource "helm_release" "metrics-server" {
   namespace  = kubernetes_namespace.devops.metadata.0.name
 }
 
-resource "null_resource" "tekton-ci" {
-
-  depends_on = [
-    kubernetes_namespace.devops
-  ]
-
+resource "null_resource" "tekton-operator" {
   provisioner "local-exec" {
-    command = "kubectl apply -f https://storage.googleapis.com/tekton-releases/pipeline/previous/${var.tekton-ci-version}/release.yaml"
+    command = <<-EOT
+      kubectl apply -f https://storage.googleapis.com/tekton-releases/operator/${var.tekton-operator-version}/release.yaml
+      kubectl apply -f https://raw.githubusercontent.com/tektoncd/operator/main/config/crs/kubernetes/config/all/operator_v1alpha1_config_cr.yaml
+    EOT
   }
 }
