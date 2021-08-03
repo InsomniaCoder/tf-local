@@ -1,0 +1,22 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: local-infrastructure-pipeline
+spec:
+  workspaces:
+    - name: local
+  params:
+    - name: repo
+      type: string
+  tasks:
+    - name: fetch-repository
+      taskRef:
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: local
+      params:
+        - name: url
+          value: "$(params.repo)"
+        - name: deleteExisting
+          value: "true"
