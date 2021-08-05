@@ -26,6 +26,7 @@ spec:
       workspaces:
       - name: source
         workspace: local
+        subPath: local-tf
       params:
         - name: ARGS
           value:
